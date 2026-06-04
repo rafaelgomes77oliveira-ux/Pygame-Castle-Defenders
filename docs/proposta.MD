@@ -6,8 +6,6 @@ Castle Defenders
 
 ## 2. Integrantes do grupo
 
-Liste os integrantes do grupo.
-
 - Álvaro Barbosa Ferreira Silva
 - Enzo Gentil Xavier Barroso
 - Rafael GOmes antunes De Oliveira
