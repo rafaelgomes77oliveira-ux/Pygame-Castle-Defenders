@@ -13,17 +13,23 @@ centro_y = altura // 2
 lista_inimigos = []
 velocidade_inimigo = 3
 
-img_inimigo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\enemy.png").convert_alpha()
-img_inimigo = pygame.transform.scale(img_inimigo, (30,60))
-img_torre = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\tower.png").convert_alpha()
-img_torre = pygame.transform.scale(img_torre, (100,100))
 
-torre_rect = img_torre.get_rect()
-torre_rect.center = (centro_x, centro_y)
+class Torre:
+    def __init__(self, x_centro, y_centro):
+        self.imagem = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\tower.png").convert_alpha()
+        self.imagem = pygame.transform.scale(self.imagem, (100, 100))
+        self.rect = self.imagem.get_rect()
+        self.rect.center = (x_centro, y_centro)
 
-def spawn_inimigo():
-    angulo = random.uniform(0, 2 * math.pi)
-    raio_spawn = max(largura, altura) // 2 + 50
+
+class Inimigo:
+    def __init__(self, x_centro, y_centro, velocidade):
+        self.imagem = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\enemy.png").convert_alpha()
+        self.imagem = pygame.transform.scale(self.imagem, (30, 60))
+        self.rect = self.imagem.get_rect()
+
+        angulo = random.uniform(0, 2 * math.pi)
+        raio_spawn = max(largura, altura) // 2 + 50
 
         self.x = x_centro + raio_spawn * math.cos(angulo)
         self.y = y_centro + raio_spawn * math.sin(angulo)
