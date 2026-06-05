@@ -18,6 +18,12 @@ while rodando:
         if evento.type == pygame.QUIT:
             rodando = False
 
+    tela.fill((0, 0, 0))
+
+    posição_mouse = pygame.mouse.get_pos()
+    pygame.draw.circle(tela, (255, 0, 0), posição_mouse, 20)
+    print(posição_mouse)
+    pygame.display.flip()
 
 pygame.quit()
 sys.exit()
