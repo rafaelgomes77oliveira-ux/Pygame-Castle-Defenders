@@ -4,7 +4,7 @@
 
 - Álvaro Barbosa Ferreira Silva
 - Enzo Gentil Xavier Barroso
-- Rafael GOmes antunes De Oliveira
+- Rafael Gomes antunes De Oliveira
 - João Mario Paes de Abreu
 
 ## Estrutura do projeto
