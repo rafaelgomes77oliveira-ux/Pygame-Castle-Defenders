@@ -12,6 +12,9 @@ centro_y = altura // 2
 lista_inimigos = []
 velocidade_inimigo = 3
 
+pygame.mixer.music.load(r"C:\Users\silva\Pygame-Castle-Defenders\assets\sons\BeepBox-Song.wav")
+pygame.mixer.music.play(-1)
+
 img_inimigo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\enemy.png").convert_alpha()
 img_inimigo = pygame.transform.scale(img_inimigo, (30,60))
 img_torre = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\tower.png").convert_alpha()
