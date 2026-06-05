@@ -40,6 +40,13 @@ def spawn_inimigo():
 
     lista_inimigos.append({'x': x, 'y': y, 'dx': dx, 'dy': dy})
 
+def verificar_colisao_inimigo(inimigo, torre_rect):
+    inimigo_rect = img_inimigo.get_rect()
+    inimigo_rect.center = (int(inimigo['x']), int(inimigo['y']))
+    
+    if inimigo_rect.colliderect(torre_rect):
+        inimigo['dx'] = 0
+        inimigo['dy'] = 0
 
 EVENTO_SPAWN = pygame.USEREVENT + 1
 pygame.time.set_timer(EVENTO_SPAWN, 800)
@@ -64,6 +71,8 @@ while rodando:
         inimigo_rect = img_inimigo.get_rect()
         inimigo_rect.center = (int(inimigo['x']), int(inimigo['y']))
         tela.blit(img_inimigo, inimigo_rect)
+
+        verificar_colisao_inimigo(inimigo, torre_rect)
 
     posição_mouse = pygame.mouse.get_pos()
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, 20)
