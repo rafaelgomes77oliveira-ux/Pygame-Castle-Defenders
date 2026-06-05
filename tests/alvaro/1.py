@@ -1,7 +1,7 @@
 import pygame
 import sys
 import random
-import math 
+import math
 
 pygame.init()
 largura = 1920
@@ -10,41 +10,33 @@ tela = pygame.display.set_mode((largura, altura))
 centro_x = largura // 2
 centro_y = altura // 2
 lista_inimigos = []
-velocidade_inimigo = 1
+velocidade_inimigo = 3
 
-class Inimigo:
-    def __init__(self, nome, vida, x, y, imagem):
-        self.nome = nome
-        self.vida = vida
-
-        self.imagem = pygame.image.load(imagem).convert_alpha()
-
-        self.rect = self.imagem.get_rect()
-        self.rect.x = x
-        self.rect.y = y
-
-    def desenhar(self, tela):
-        tela.blit(self.imagem, self.rect)
-        
-inimigo = Inimigo("Enzo", 100, 300, 200, "inimigo.png" )
+img_inimigo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\sprites\img.png").convert()
+img_inimigo = pygame.transform.scale(img_inimigo, (30,60))
+inimigo_rect = img_inimigo.get_rect()
+img_torre = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\sprites\torre.png").convert_alpha()
+img_torre = pygame.transform.scale(img_torre, (100, 100))
+torre_rect = img_torre.get_rect(center=(centro_x, centro_y))
 
 def spawn_inimigo():
     angulo = random.uniform(0, 2 * math.pi)
-    
     raio_spawn = max(largura, altura) // 2 + 50
-    
+
     x = centro_x + raio_spawn * math.cos(angulo)
     y = centro_y + raio_spawn * math.sin(angulo)
-    
+    inimigo_rect = img_inimigo.get_rect(center=(x, y))
+
     sentido_x = centro_x - x
     sentido_y = centro_y - y
-    
+
     distancia = math.hypot(sentido_x, sentido_y)
-    
+
     dx = (sentido_x / distancia) * velocidade_inimigo
     dy = (sentido_y / distancia) * velocidade_inimigo
-    
+
     lista_inimigos.append({'x': x, 'y': y, 'dx': dx, 'dy': dy})
+
 
 EVENTO_SPAWN = pygame.USEREVENT + 1
 pygame.time.set_timer(EVENTO_SPAWN, 800)
@@ -65,12 +57,13 @@ while rodando:
     for inimigo in lista_inimigos:
         inimigo['x'] += inimigo['dx']
         inimigo['y'] += inimigo['dy']
-
-        tela.blit(inimigo, (int(inimigo['x']) - inimigo.get_width(20) // 2, int(inimigo['y']) - inimigo.get_height(20) // 2))
+        tela.blit(img_inimigo, (int(inimigo['x']), int(inimigo['y'])))
+        tela.blit(inimigo_rect, (int(inimigo['x']), int(inimigo['y'])))
 
     posição_mouse = pygame.mouse.get_pos()
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, 20)
-    pygame.draw.circle(tela, (50, 50, 50), (centro_x, centro_y), 10)
+    tela.blit(img_torre, torre_rect)
+
     pygame.display.flip()
     relogio.tick(60)
 
