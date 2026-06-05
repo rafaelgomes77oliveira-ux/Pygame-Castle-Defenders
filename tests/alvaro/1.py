@@ -10,7 +10,23 @@ tela = pygame.display.set_mode((largura, altura))
 centro_x = largura // 2
 centro_y = altura // 2
 lista_inimigos = []
-velocidade_inimigo = 3
+velocidade_inimigo = 1
+
+class Inimigo:
+    def __init__(self, nome, vida, x, y, imagem):
+        self.nome = nome
+        self.vida = vida
+
+        self.imagem = pygame.image.load(imagem).convert_alpha()
+
+        self.rect = self.imagem.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+    def desenhar(self, tela):
+        tela.blit(self.imagem, self.rect)
+        
+inimigo = Inimigo("Enzo", 100, 300, 200, "inimigo.png" )
 
 def spawn_inimigo():
     angulo = random.uniform(0, 2 * math.pi)
@@ -50,7 +66,7 @@ while rodando:
         inimigo['x'] += inimigo['dx']
         inimigo['y'] += inimigo['dy']
 
-        pygame.draw.circle(tela, (0, 0, 255), (int(inimigo['x']), int(inimigo['y'])), 15)
+        tela.blit(inimigo, (int(inimigo['x']) - inimigo.get_width(20) // 2, int(inimigo['y']) - inimigo.get_height(20) // 2))
 
     posição_mouse = pygame.mouse.get_pos()
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, 20)
