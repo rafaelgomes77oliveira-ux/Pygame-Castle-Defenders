@@ -12,12 +12,13 @@ centro_y = altura // 2
 lista_inimigos = []
 velocidade_inimigo = 3
 
-img_inimigo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\sprites\img.png").convert()
+img_inimigo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\enemy.png").convert_alpha()
 img_inimigo = pygame.transform.scale(img_inimigo, (30,60))
-inimigo_rect = img_inimigo.get_rect()
-img_torre = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\sprites\torre.png").convert_alpha()
-img_torre = pygame.transform.scale(img_torre, (100, 100))
-torre_rect = img_torre.get_rect(center=(centro_x, centro_y))
+img_torre = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\tower.png").convert_alpha()
+img_torre = pygame.transform.scale(img_torre, (100,100))
+
+torre_rect = img_torre.get_rect()
+torre_rect.center = (centro_x, centro_y)
 
 def spawn_inimigo():
     angulo = random.uniform(0, 2 * math.pi)
@@ -25,7 +26,6 @@ def spawn_inimigo():
 
     x = centro_x + raio_spawn * math.cos(angulo)
     y = centro_y + raio_spawn * math.sin(angulo)
-    inimigo_rect = img_inimigo.get_rect(center=(x, y))
 
     sentido_x = centro_x - x
     sentido_y = centro_y - y
@@ -57,8 +57,10 @@ while rodando:
     for inimigo in lista_inimigos:
         inimigo['x'] += inimigo['dx']
         inimigo['y'] += inimigo['dy']
-        tela.blit(img_inimigo, (int(inimigo['x']), int(inimigo['y'])))
-        tela.blit(inimigo_rect, (int(inimigo['x']), int(inimigo['y'])))
+
+        inimigo_rect = img_inimigo.get_rect()
+        inimigo_rect.center = (int(inimigo['x']), int(inimigo['y']))
+        tela.blit(img_inimigo, inimigo_rect)
 
     posição_mouse = pygame.mouse.get_pos()
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, 20)

@@ -12,9 +12,9 @@ centro_y = altura // 2
 lista_inimigos = []
 velocidade_inimigo = 3
 
-img_inimigo = pygame.image.load("enemy.png").convert_alpha()
+img_inimigo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\enemy.png").convert_alpha()
 img_inimigo = pygame.transform.scale(img_inimigo, (30,60))
-img_torre = pygame.image.load("tower.png").convert_alpha()
+img_torre = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\tower.png").convert_alpha()
 img_torre = pygame.transform.scale(img_torre, (100,100))
 
 torre_rect = img_torre.get_rect()
