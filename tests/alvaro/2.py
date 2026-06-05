@@ -10,7 +10,11 @@ tela = pygame.display.set_mode((largura, altura))
 centro_x = largura // 2
 centro_y = altura // 2
 lista_inimigos = []
-velocidade_inimigo = 3
+velocidade_inimigo = 1
+
+img_torre = pygame.image.load(r"sprites\Tower-lv1.png").convert_alpha()
+img_torre = pygame.transform.scale(img_torre, (100, 100))
+torre_rect = img_torre.get_rect(center=(centro_x, centro_y))
 
 def spawn_inimigo():
     angulo = random.uniform(0, 2 * math.pi)
@@ -54,7 +58,7 @@ while rodando:
 
     posição_mouse = pygame.mouse.get_pos()
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, 20)
-    pygame.draw.circle(tela, (50, 50, 50), (centro_x, centro_y), 10)
+    tela.blit(img_torre, torre_rect)
     pygame.display.flip()
     relogio.tick(60)
 
