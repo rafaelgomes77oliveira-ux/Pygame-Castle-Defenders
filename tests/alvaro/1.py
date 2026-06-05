@@ -7,10 +7,8 @@ pygame.init()
 largura = 1920
 altura = 1020
 tela = pygame.display.set_mode((largura, altura))
-
 centro_x = largura // 2
 centro_y = altura // 2
-
 lista_inimigos = []
 velocidade_inimigo = 3
 
@@ -39,13 +37,10 @@ rodando = True
 relogio = pygame.time.Clock()
 pygame.display.set_caption("Castle Defenders")
 
-# fechar o jogo
 while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
-            
-        # Verifica se o timer do spawn disparou
         if evento.type == EVENTO_SPAWN:
             spawn_inimigo()
 
@@ -60,7 +55,6 @@ while rodando:
     posição_mouse = pygame.mouse.get_pos()
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, 20)
     pygame.draw.circle(tela, (50, 50, 50), (centro_x, centro_y), 10)
-
     pygame.display.flip()
     relogio.tick(60)
 
