@@ -113,6 +113,10 @@ while rodando:
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, raio_ataque_mouse)
     tela.blit(torre.imagem, torre.rect)
 
+    if torre.vida <= 0:
+        print("A torre foi destruída! Fim de jogo.")
+        rodando = False
+        
     pygame.display.flip()
     relogio.tick(60)
 
