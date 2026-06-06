@@ -33,6 +33,7 @@ class Inimigo:
         self.rect = self.imagem.get_rect()
         self.vida = 10
         self.dano = 5
+        self.ultimo_ataque = 0
 
         angulo = random.uniform(0, 2 * math.pi)
         raio_spawn = max(largura, altura) // 2 + 50
@@ -64,6 +65,12 @@ def verificar_colisao_inimigo(inimigo, torre):
     if inimigo.rect.colliderect(torre.rect):
         inimigo.dx = 0
         inimigo.dy = 0
+        tempo_atual = pygame.time.get_ticks()
+        if tempo_atual - inimigo.ultimo_ataque >= 1000:
+            torre.vida -= inimigo.dano
+            print(f"Vida da Torre: {torre.vida}")
+            inimigo.ultimo_ataque = tempo_atual
+
 
 def verificar_dano_mouse(pos_mouse, raio_circulo, dano_causado):
     for inimigo in list(dicionario_inimigos.keys()):
@@ -71,6 +78,7 @@ def verificar_dano_mouse(pos_mouse, raio_circulo, dano_causado):
     
         if distancia < (raio_circulo + inimigo.rect.width // 2):
             dicionario_inimigos[inimigo] -= dano_causado
+
 
 evento_spawn = pygame.USEREVENT + 1
 pygame.time.set_timer(evento_spawn, 800)
