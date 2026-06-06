@@ -10,22 +10,26 @@ tela = pygame.display.set_mode((largura, altura))
 centro_x = largura // 2
 centro_y = altura // 2
 
+imagem_torre = pygame.image.load("tower.png").convert_alpha()
+imagem_torre = pygame.transform.scale(imagem_torre, (100, 100))
+
+imagem_inimigo = pygame.image.load("enemy.png").convert_alpha()
+imagem_inimigo = pygame.transform.scale(imagem_inimigo, (30, 60))
+
 lista_inimigos = []
 velocidade_inimigo = 3
 
 
 class Torre:
     def __init__(self, x_centro, y_centro):
-        self.imagem = pygame.image.load("tower.png").convert_alpha()
-        self.imagem = pygame.transform.scale(self.imagem, (100, 100))
+        self.imagem = imagem_torre
         self.rect = self.imagem.get_rect()
         self.rect.center = (x_centro, y_centro)
 
 
 class Inimigo:
     def __init__(self, x_centro, y_centro, velocidade):
-        self.imagem = pygame.image.load("enemy.png").convert_alpha()
-        self.imagem = pygame.transform.scale(self.imagem, (30, 60))
+        self.imagem = imagem_inimigo
         self.rect = self.imagem.get_rect()
 
         angulo = random.uniform(0, 2 * math.pi)
@@ -56,13 +60,15 @@ def spawn_inimigo():
     novo_inimigo = Inimigo(centro_x, centro_y, velocidade_inimigo)
     lista_inimigos.append(novo_inimigo)
 
+
 def verificar_colisao_inimigo(inimigo, torre):
     if inimigo.rect.colliderect(torre.rect):
         inimigo.dx = 0
         inimigo.dy = 0
 
-EVENTO_SPAWN = pygame.USEREVENT + 1
-pygame.time.set_timer(EVENTO_SPAWN, 800)
+
+evento_spawn = pygame.USEREVENT + 1
+pygame.time.set_timer(evento_spawn, 800)
 
 rodando = True
 relogio = pygame.time.Clock()
@@ -72,7 +78,7 @@ while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
-        if evento.type == EVENTO_SPAWN:
+        if evento.type == evento_spawn:
             spawn_inimigo()
 
     tela.fill((0, 0, 0))
