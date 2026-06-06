@@ -26,6 +26,9 @@ class Torre:
         self.rect = self.imagem.get_rect()
         self.rect.center = (x_centro, y_centro)
         self.vida = 100
+        self.vida_maxima = 100
+        self.barra_vida_largura = 50
+        self.ratio_vida = self.barra_vida_largura / self.vida_maxima
 
 class Inimigo:
     def __init__(self, x_centro, y_centro, velocidade):
@@ -110,13 +113,15 @@ while rodando:
         tela.blit(inimigo.imagem, inimigo.rect)
         verificar_colisao_inimigo(inimigo, torre)
 
+    pygame.draw.rect(tela, (255, 0, 0), (10,10, torre.vida/torre.ratio_vida, 10))
+
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, raio_ataque_mouse)
     tela.blit(torre.imagem, torre.rect)
 
     if torre.vida <= 0:
         print("A torre foi destruída! Fim de jogo.")
         rodando = False
-        
+
     pygame.display.flip()
     relogio.tick(60)
 
