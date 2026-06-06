@@ -6,8 +6,8 @@ from entidades import Torre, InimigoCultista
 
 tela_fundo = pygame.image.load("assets/background.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
-botao_play_teste = pygame.image.load("assets/botao.png").convert_alpha()
-botao_play_teste = pygame.transform.scale(botao_play_teste, (100, 50))
+botao_play = pygame.image.load("assets/botao.png").convert_alpha()
+botao_play = pygame.transform.scale(botao_play, (100, 50))
 fonte_titulo = pygame.font.Font("assets/PixelOperator8-Bold.ttf", 60)
 texto_titulo = fonte_titulo.render("Castle Defenders", True, (255, 255, 255))
 rect_titulo = texto_titulo.get_rect(center=(config.centro_x, config.centro_y - 120))
@@ -57,7 +57,7 @@ while rodando:
         if play:
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 if evento.button == 1:
-                    if botao_play_teste.get_rect(topleft=(config.largura // 2 - 50, config.altura // 2 - 25)).collidepoint(
+                    if botao_play.get_rect(topleft=(config.largura // 2 - 50, config.altura // 2 - 25)).collidepoint(
                             posicao_mouse):
                         play = False
 
@@ -71,7 +71,7 @@ while rodando:
     if play:
         config.tela.fill((0, 0, 0))
         config.tela.blit(texto_titulo, rect_titulo)
-        config.tela.blit(botao_play_teste, (config.largura // 2 - 50, config.altura // 2 - 25))
+        config.tela.blit(botao_play, (config.largura // 2 - 50, config.altura // 2 - 25))
     else:
         config.tela.blit(tela_fundo, (0, 0))
 
