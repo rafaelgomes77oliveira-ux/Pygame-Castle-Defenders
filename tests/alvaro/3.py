@@ -7,11 +7,13 @@ pygame.init()
 largura = 1920
 altura = 1020
 tela = pygame.display.set_mode((largura, altura))
+tela_fundo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\background.png").convert()
+tela_fundo = pygame.transform.scale(tela_fundo, (largura, altura))
 centro_x = largura // 2
 centro_y = altura // 2
 
 imagem_torre = pygame.image.load("tests/joao/tower.png").convert_alpha()
-imagem_torre = pygame.transform.scale(imagem_torre, (100, 100))
+imagem_torre = pygame.transform.scale(imagem_torre, (150, 150))
 
 imagem_inimigo = pygame.image.load("tests/joao/enemy.png").convert_alpha()
 imagem_inimigo = pygame.transform.scale(imagem_inimigo, (30, 60))
@@ -102,7 +104,8 @@ while rodando:
             if evento.button == 1:
                 verificar_dano_mouse(posição_mouse, raio_ataque_mouse, dano_causado=5)
 
-    tela.fill((0, 0, 0))
+    
+    tela.blit(tela_fundo, (0, 0))
 
     for inimigo in list(dicionario_inimigos.keys()):
         if dicionario_inimigos[inimigo] <= 0:
@@ -113,7 +116,7 @@ while rodando:
         tela.blit(inimigo.imagem, inimigo.rect)
         verificar_colisao_inimigo(inimigo, torre)
 
-    pygame.draw.rect(tela, (255, 0, 0), (centro_x - 50, centro_y - 50, torre.vida/torre.ratio_vida, 10))
+    pygame.draw.rect(tela, (255, 0, 0), (centro_x - 50, centro_y - 75, torre.vida/torre.ratio_vida, 10))
 
     pygame.draw.circle(tela, (255, 0, 0), posição_mouse, raio_ataque_mouse)
     tela.blit(torre.imagem, torre.rect)

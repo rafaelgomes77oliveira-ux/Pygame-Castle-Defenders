@@ -7,6 +7,7 @@ pygame.init()
 largura = 1920
 altura = 1020
 tela = pygame.display.set_mode((largura, altura))
+tela_fundo = pygame.image.load(r"C:\Users\silva\Pygame-Castle-Defenders\tests\joao\background.png").convert()
 centro_x = largura // 2
 centro_y = altura // 2
 lista_inimigos = []
