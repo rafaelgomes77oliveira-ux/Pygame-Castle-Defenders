@@ -16,7 +16,7 @@ imagem_torre = pygame.transform.scale(imagem_torre, (100, 100))
 imagem_inimigo = pygame.image.load("enemy.png").convert_alpha()
 imagem_inimigo = pygame.transform.scale(imagem_inimigo, (30, 60))
 
-lista_inimigos = []
+dicionario_inimigos = {}
 velocidade_inimigo = 3
 
 
@@ -25,12 +25,15 @@ class Torre:
         self.imagem = imagem_torre
         self.rect = self.imagem.get_rect()
         self.rect.center = (x_centro, y_centro)
+        self.vida = 100
 
 
 class Inimigo:
     def __init__(self, x_centro, y_centro, velocidade):
         self.imagem = imagem_inimigo
         self.rect = self.imagem.get_rect()
+        self.vida = 10
+        self.dano = 5
 
         angulo = random.uniform(0, 2 * math.pi)
         raio_spawn = max(largura, altura) // 2 + 50
@@ -58,7 +61,7 @@ torre = Torre(centro_x, centro_y)
 
 def spawn_inimigo():
     novo_inimigo = Inimigo(centro_x, centro_y, velocidade_inimigo)
-    lista_inimigos.append(novo_inimigo)
+    dicionario_inimigos[novo_inimigo] = novo_inimigo.vida
 
 
 def verificar_colisao_inimigo(inimigo, torre):
@@ -83,7 +86,11 @@ while rodando:
 
     tela.fill((0, 0, 0))
 
-    for inimigo in lista_inimigos:
+    for inimigo in list(dicionario_inimigos.keys()):
+        if dicionario_inimigos[inimigo] <= 0:
+            del dicionario_inimigos[inimigo]
+            continue
+
         inimigo.update()
         tela.blit(inimigo.imagem, inimigo.rect)
         verificar_colisao_inimigo(inimigo, torre)
