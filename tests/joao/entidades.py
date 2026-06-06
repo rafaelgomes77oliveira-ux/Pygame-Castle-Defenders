@@ -53,4 +53,4 @@ class Inimigo:
 
 class InimigoCultista(Inimigo):
     def __init__(self, x_centro, y_centro):
-        super().__init__(x_centro, y_centro, velocidade=2, imagem=imagem_inimigo, vida=25, dano=12)
+        super().__init__(x_centro, y_centro, velocidade=2, imagem=imagem_inimigo, vida=10, dano=5)

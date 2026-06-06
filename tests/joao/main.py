@@ -6,9 +6,11 @@ from entidades import Torre, InimigoCultista
 
 tela_fundo = pygame.image.load("assets/background.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
-
 botao_play_teste = pygame.image.load("assets/botao.png").convert_alpha()
 botao_play_teste = pygame.transform.scale(botao_play_teste, (100, 50))
+fonte_titulo = pygame.font.Font("assets/PixelOperator8-Bold.ttf", 60)
+texto_titulo = fonte_titulo.render("Castle Defenders", True, (255, 255, 255))
+rect_titulo = texto_titulo.get_rect(center=(config.centro_x, config.centro_y - 120))
 
 dicionario_inimigos = {}
 raio_ataque_mouse = 20
@@ -68,6 +70,7 @@ while rodando:
 
     if play:
         config.tela.fill((0, 0, 0))
+        config.tela.blit(texto_titulo, rect_titulo)
         config.tela.blit(botao_play_teste, (config.largura // 2 - 50, config.altura // 2 - 25))
     else:
         config.tela.blit(tela_fundo, (0, 0))
@@ -81,7 +84,12 @@ while rodando:
             config.tela.blit(inimigo.imagem, inimigo.rect)
             verificar_colisao_inimigo(inimigo, torre)
 
-        pygame.draw.rect(config.tela, (255, 0, 0), (config.centro_x - 50, config.centro_y - 100, torre.vida / torre.ratio_vida, 10))
+        barra_x = config.centro_x - (torre.barra_vida_largura // 2)
+        barra_y = torre.rect.top - 20
+        largura_atual_barra = (torre.vida / torre.vida_maxima) * torre.barra_vida_largura
+        pygame.draw.rect(config.tela, (40, 40, 40), (barra_x, barra_y, torre.barra_vida_largura, 12))
+        pygame.draw.rect(config.tela, (255, 0, 0), (barra_x, barra_y, largura_atual_barra, 12))
+
         config.tela.blit(torre.imagem, torre.rect)
         pygame.draw.circle(config.tela, (255, 0, 0), posicao_mouse, raio_ataque_mouse)
 
