@@ -10,10 +10,10 @@ tela = pygame.display.set_mode((largura, altura))
 centro_x = largura // 2
 centro_y = altura // 2
 
-imagem_torre = pygame.image.load("tower.png").convert_alpha()
+imagem_torre = pygame.image.load("tests/joao/tower.png").convert_alpha()
 imagem_torre = pygame.transform.scale(imagem_torre, (100, 100))
 
-imagem_inimigo = pygame.image.load("enemy.png").convert_alpha()
+imagem_inimigo = pygame.image.load("tests/joao/enemy.png").convert_alpha()
 imagem_inimigo = pygame.transform.scale(imagem_inimigo, (30, 60))
 
 dicionario_inimigos = {}
