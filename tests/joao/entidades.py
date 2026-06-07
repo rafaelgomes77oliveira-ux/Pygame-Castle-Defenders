@@ -1,3 +1,5 @@
+from cmath import rect
+
 import pygame
 import random
 import math
@@ -7,9 +9,8 @@ import config
 imagem_torre = pygame.image.load("tests/joao/assets/tower.png").convert_alpha()
 imagem_torre = pygame.transform.scale(imagem_torre, (200, 200))
 
-imagem_inimigo = pygame.image.load("tests/joao/assets/enemy.png").convert_alpha()
+imagem_inimigo = pygame.image.load("tests/joao/assets/Cultista-Sheet.png").convert_alpha()
 imagem_inimigo = pygame.transform.scale(imagem_inimigo, (30, 60))
-
 
 class Torre:
     def __init__(self, x_centro, y_centro):
