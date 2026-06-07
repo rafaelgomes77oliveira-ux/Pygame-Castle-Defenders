@@ -4,6 +4,16 @@ import math
 import config
 from entidades import Torre, InimigoCultista
 
+def carregar_pontos():
+    with open("data/pontos.txt", "r") as arq:
+        return int(arq.read().strip())
+
+def salvar_pontos(quantidade):
+    with open("data/pontos.txt", "w") as arq:
+        arq.write(str(quantidade))
+
+pontos = carregar_pontos()
+
 tela_fundo = pygame.image.load("assets/background.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
 botao_play = pygame.image.load("assets/botao.png").convert_alpha()
@@ -77,6 +87,8 @@ while rodando:
 
         for inimigo in list(dicionario_inimigos.keys()):
             if dicionario_inimigos[inimigo] <= 0:
+                pontos += 1
+                salvar_pontos(pontos)
                 del dicionario_inimigos[inimigo]
                 continue
 
@@ -92,6 +104,8 @@ while rodando:
 
         config.tela.blit(torre.imagem, torre.rect)
         pygame.draw.circle(config.tela, (255, 0, 0), posicao_mouse, raio_ataque_mouse)
+        texto_pontos = pygame.font.Font("assets/PixelOperator8-Bold.ttf", 36).render(f"{pontos}", True, (255, 255, 255))
+        config.tela.blit(texto_pontos, (20, 20))
 
         if torre.vida <= 0:
             print("A torre foi destruída! Fim de jogo.")
