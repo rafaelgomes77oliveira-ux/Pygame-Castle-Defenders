@@ -1,6 +1,7 @@
 # Fontes
 
 Armazene aqui as fontes utilizadas no jogo (ex.: `.ttf`, `.otf`).
+fonte pixel art:[text](PixelOperator8-Bold.ttf)
 
 ## Recomendações
 
