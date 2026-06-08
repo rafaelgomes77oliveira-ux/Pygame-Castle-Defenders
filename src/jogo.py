@@ -5,20 +5,20 @@ import config
 from entidades import Torre, InimigoCultista
 
 def carregar_pontos():
-    with open("../data/pontos.txt", "r") as arq:
+    with open("data/pontos.txt", "r") as arq:
         return int(arq.read().strip())
 
 def salvar_pontos(quantidade):
-    with open("../data/pontos.txt", "w") as arq:
+    with open("data/pontos.txt", "w") as arq:
         arq.write(str(quantidade))
 
 pontos = carregar_pontos()
 
-tela_fundo = pygame.image.load("../assets/imagens/background.png").convert()
+tela_fundo = pygame.image.load("assets/imagens/background.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
-botao_play = pygame.image.load("../assets/imagens/botao.png").convert_alpha()
+botao_play = pygame.image.load("assets/imagens/botao.png").convert_alpha()
 botao_play = pygame.transform.scale(botao_play, (100, 50))
-fonte_titulo = pygame.font.Font("../assets/fontes/PixelOperator8-Bold.ttf", 60)
+fonte_titulo = pygame.font.Font("assets/fontes/PixelOperator8-Bold.ttf", 60)
 texto_titulo = fonte_titulo.render("Castle Defenders", True, (255, 255, 255))
 rect_titulo = texto_titulo.get_rect(center=(config.centro_x, config.centro_y - 120))
 
@@ -104,7 +104,7 @@ while rodando:
 
         config.tela.blit(torre.imagem, torre.rect)
         pygame.draw.circle(config.tela, (255, 0, 0), posicao_mouse, raio_ataque_mouse)
-        texto_pontos = pygame.font.Font("../assets/fontes/PixelOperator8-Bold.ttf", 36).render(f"{pontos}", True, (255, 255, 255))
+        texto_pontos = pygame.font.Font("assets/fontes/PixelOperator8-Bold.ttf", 36).render(f"{pontos}", True, (255, 255, 255))
         config.tela.blit(texto_pontos, (20, 20))
 
         if torre.vida <= 0:
