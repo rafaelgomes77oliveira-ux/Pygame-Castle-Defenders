@@ -8,12 +8,6 @@ from src import funcoes
 def executar_jogo():
     pygame.init()
 
-    def resetar_jogo():
-        global torre, dicionario_inimigos, pontos_sessao
-        torre = Torre(config.centro_x, config.centro_y)
-        dicionario_inimigos = {}
-        pontos_sessao = 0
-
     pontos = carregar_pontos()
     pontos_sessao = 0
 
@@ -31,14 +25,12 @@ def executar_jogo():
 
     dicionario_inimigos = {}
     raio_ataque_mouse   = 20
-
     torre = Torre(config.centro_x, config.centro_y)
 
     evento_spawn = pygame.USEREVENT + 1
     pygame.time.set_timer(evento_spawn, 800)
 
     estado_jogo = "menu"
-
     rodando = True
     relogio  = pygame.time.Clock()
     pygame.display.set_caption("Castle Defenders")
@@ -65,7 +57,9 @@ def executar_jogo():
             elif estado_jogo == "game_over":
                 if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
                     if rect_botao_replay.collidepoint(posicao_mouse):
-                        resetar_jogo()
+                        torre = Torre(config.centro_x, config.centro_y)
+                        dicionario_inimigos.clear()
+                        pontos_sessao = 0
                         estado_jogo = "jogando"
 
         if estado_jogo == "menu":
