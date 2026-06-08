@@ -4,10 +4,10 @@ import math
 import config
 
 
-imagem_torre = pygame.image.load("../assets/imagens/tower.png").convert_alpha()
+imagem_torre = pygame.image.load("assets/imagens/tower.png").convert_alpha()
 imagem_torre = pygame.transform.scale(imagem_torre, (200, 200))
 
-imagem_inimigo = pygame.image.load("../assets/imagens/Cultista-Sheet.png").convert_alpha()
+imagem_inimigo = pygame.image.load("assets/imagens/Cultista-Sheet.png").convert_alpha()
 imagem_inimigo = pygame.transform.scale(imagem_inimigo, (30, 60))
 
 
