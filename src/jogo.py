@@ -14,7 +14,7 @@ def salvar_pontos(quantidade):
 
 pontos = carregar_pontos()
 
-tela_fundo = pygame.image.load("assets/imagens/background.png").convert()
+tela_fundo = pygame.image.load("assets/imagens/Background-prototipo.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
 botao_play = pygame.image.load("assets/imagens/botao.png").convert_alpha()
 botao_play = pygame.transform.scale(botao_play, (100, 50))
