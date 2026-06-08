@@ -13,7 +13,7 @@ def salvar_pontos(quantidade):
         arq.write(str(quantidade))
 
 pontos = carregar_pontos()
-
+RAIO_CONTATO_TORRE = 90
 tela_fundo = pygame.image.load("assets/imagens/Background-prototipo.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
 botao_play = pygame.image.load("assets/imagens/botao.png").convert_alpha()
@@ -34,7 +34,12 @@ def spawn_inimigo():
 
 
 def verificar_colisao_inimigo(inimigo, torre):
-    if inimigo.rect.colliderect(torre.rect):
+    distancia = math.hypot(
+        inimigo.rect.centerx - torre.rect.centerx,
+        inimigo.rect.centery - torre.rect.centery
+    )
+
+    if distancia <= RAIO_CONTATO_TORRE:
         inimigo.dx = 0
         inimigo.dy = 0
 
@@ -46,7 +51,6 @@ def verificar_colisao_inimigo(inimigo, torre):
         if tempo_atual - inimigo.ultimo_ataque >= 1000:
             torre.vida -= inimigo.dano
             inimigo.ultimo_ataque = tempo_atual
-
 
 def verificar_dano_mouse(pos_mouse, raio_circulo, dano_causado):
     for inimigo in list(dicionario_inimigos.keys()):
