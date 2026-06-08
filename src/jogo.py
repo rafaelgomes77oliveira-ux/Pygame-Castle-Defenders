@@ -37,6 +37,11 @@ def verificar_colisao_inimigo(inimigo, torre):
     if inimigo.rect.colliderect(torre.rect):
         inimigo.dx = 0
         inimigo.dy = 0
+
+        if inimigo.estado != "atacar":
+            inimigo.estado = "atacar"
+            inimigo.index_frame = 0
+
         tempo_atual = pygame.time.get_ticks()
         if tempo_atual - inimigo.ultimo_ataque >= 1000:
             torre.vida -= inimigo.dano
