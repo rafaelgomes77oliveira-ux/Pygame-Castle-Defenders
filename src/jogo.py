@@ -1,9 +1,10 @@
 import pygame
 import sys
-import config
-from entidades import Torre
-import dados
-import funcoes
+from src import config
+from src.entidades import Torre
+from src.dados import carregar_pontos, salvar_pontos
+from src import funcoes
+
 def executar_jogo():
     pygame.init()
 
@@ -13,7 +14,7 @@ def executar_jogo():
         dicionario_inimigos = {}
         pontos_sessao = 0
 
-    pontos = dados.carregar_pontos()
+    pontos = carregar_pontos()
     pontos_sessao = 0
 
     tela_fundo = pygame.image.load("assets/imagens/Background-prototipo.png").convert()
@@ -80,7 +81,7 @@ def executar_jogo():
                     pontos_sessao += 1
                     if pontos_sessao > pontos:
                         pontos = pontos_sessao
-                        dados.salvar_pontos(pontos)
+                        salvar_pontos(pontos)
 
                     del dicionario_inimigos[inimigo]
                     continue

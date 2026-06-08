@@ -1,7 +1,8 @@
 import pygame
 import math
-import config
-from entidades import InimigoCultista
+from src import config
+from src.entidades import InimigoCultista
+from src.dados import salvar_pontos
 
 RAIO_CONTATO_TORRE = 90
 

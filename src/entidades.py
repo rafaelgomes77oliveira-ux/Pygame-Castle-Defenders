@@ -1,7 +1,7 @@
 import pygame
 import random
 import math
-import config
+from src import config
 
 
 sprite_sheet_cultista = pygame.image.load("assets/imagens/Cultista-Sheet.png").convert_alpha()
