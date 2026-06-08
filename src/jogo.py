@@ -79,8 +79,10 @@ while rodando:
         for inimigo in list(dicionario_inimigos.keys()):
             if dicionario_inimigos[inimigo] <= 0:
                 pontos_sessao += 1
-                pontos += 1
-                salvar_pontos(pontos)
+                if pontos_sessao > pontos:
+                    pontos = pontos_sessao
+                    salvar_pontos(pontos)
+
                 del dicionario_inimigos[inimigo]
                 continue
 
