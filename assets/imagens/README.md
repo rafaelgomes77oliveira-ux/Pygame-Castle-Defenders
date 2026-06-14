@@ -4,7 +4,10 @@ Pasta destinada a sprites, fundos, icones e outros elementos visuais.
 
 ## Conteudo atual
 
-- `spritesheet.bmp`: spritesheet base do template.
+- `Cultista-Sheet.png`: spritesheet do inimigo cultista
+- `Background-prototipo.png`: tela de fundo
+- `botao.png`: botão de play
+- `tower.png`: imagem da torre
 
 ## Recomendações
 
