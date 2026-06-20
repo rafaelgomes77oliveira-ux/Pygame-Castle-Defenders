@@ -103,7 +103,7 @@ def executar_jogo():
                         estado_jogo = "upgrades"
                     else:
                         funcoes.verificar_dano_mouse(
-                            posicao_mouse, torre.raio_ataque, torre.dano_ataque, lista_inimigos
+                            posicao_mouse, torre.raio_ataque, torre, lista_inimigos
                         )
 
             elif estado_jogo == "upgrades":
@@ -202,6 +202,12 @@ def executar_jogo():
             config.tela.blit(txt_dificuldade, (20, 90))
             txt_moedas = fonte_pequena.render(f"Moedas: {torre.dinheiro}", True, (255, 220, 50))
             config.tela.blit(txt_moedas, (20, 120))
+
+            combo_bonus_pct = int(torre.combo_atual * torre.bonus_combo_por_acerto * 100)
+            txt_combo = fonte_pequena.render(
+                f"Combo: x{torre.combo_atual} (+{combo_bonus_pct}%)", True, (255, 220, 50)
+            )
+            config.tela.blit(txt_combo, (20, 150))
 
             rect_botao_upgrades = ui.desenhar_botao_upgrades(fonte_pequena)
 

@@ -19,6 +19,8 @@ class Torre:
         self.dano_ataque = 10
         self.raio_ataque = 20
         self.dinheiro = 0
+        self.bonus_combo_por_acerto = 0.0  
+        self.combo_atual = 0
 
         self.niveis_upgrades = carregar_upgrades()
         for u in upgrades.UPGRADES_TORRE:

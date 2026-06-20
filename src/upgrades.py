@@ -30,6 +30,16 @@ UPGRADES_TORRE = [
         "nivel_maximo": 5,
         "curar_ao_comprar": True,
     },
+    {
+        "id": "multiplicador_combo",
+        "nome": "Combo",
+        "descricao": "Aumenta o bônus de dano por acertos seguidos",
+        "atributo": "bonus_combo_por_acerto",
+        "incremento": 0.05, 
+        "custo_base": 2000,
+        "custo_por_nivel": 0,
+        "nivel_maximo": 1,
+    },
 ]
 
 
@@ -73,3 +83,18 @@ def comprar_upgrade(torre, id_upgrade):
         torre.vida = min(torre.vida + upgrade["incremento"], torre.vida_maxima)
 
     return True
+
+def processar_ataque(torre, acertou_inimigo, inimigo_alvo=None):
+    if acertou_inimigo:
+        multiplicador = 1.0 + (torre.combo_atual * torre.bonus_combo_por_acerto)
+        dano_final = round(torre.dano_ataque * multiplicador)
+
+        if inimigo_alvo:
+            print(f"Acertou! Combo: {torre.combo_atual}x | Dano causado: {dano_final}")
+
+        torre.combo_atual += 1
+        return dano_final
+    else:
+        torre.combo_atual = 0
+        print("Errou! O combo foi resetado para 0.")
+        return 0

@@ -48,8 +48,14 @@ def verificar_colisao_inimigo(inimigo, torre):
             inimigo.ultimo_ataque = tempo_atual
 
 
-def verificar_dano_mouse(pos_mouse, raio_circulo, dano_causado, lista_inimigos):
+def verificar_dano_mouse(pos_mouse, raio_circulo, torre, lista_inimigos):
+    inimigos_alcancados = []
+
     for inimigo in lista_inimigos:
         distancia = math.hypot(pos_mouse[0] - inimigo.rect.centerx, pos_mouse[1] - inimigo.rect.centery)
         if distancia < (raio_circulo + inimigo.rect.width // 2):
-            inimigo.vida -= dano_causado
+            inimigos_alcancados.append(inimigo)
+
+    dano = upgrades.processar_ataque(torre, len(inimigos_alcancados) > 0)
+    for inimigo in inimigos_alcancados:
+        inimigo.vida -= dano
