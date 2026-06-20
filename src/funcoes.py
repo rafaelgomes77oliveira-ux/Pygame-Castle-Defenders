@@ -1,7 +1,8 @@
 import pygame
+import random
 import math
 from src import config
-from src.entidades import Inimigo
+from src.entidades import Inimigo, InimigoCoxinha
 from src import upgrades
 
 RAIO_CONTATO_TORRE = 90
@@ -24,7 +25,13 @@ def formatar_tempo(segundos_decorridos):
 
 
 def spawn_inimigo(lista_inimigos, dificuldade=1, boss=False):
-    novo_inimigo = Inimigo(config.centro_x, config.centro_y, dificuldade, boss)
+    if boss:
+        novo_inimigo = Inimigo(config.centro_x, config.centro_y, dificuldade, True)
+    elif dificuldade >= 3 and random.random() < 0.30:
+        novo_inimigo = InimigoCoxinha(config.centro_x, config.centro_y, dificuldade)
+    else:
+        novo_inimigo = Inimigo(config.centro_x, config.centro_y, dificuldade, False)
+
     lista_inimigos.append(novo_inimigo)
 
 
@@ -38,14 +45,24 @@ def verificar_colisao_inimigo(inimigo, torre):
         inimigo.dx = 0
         inimigo.dy = 0
 
-        if inimigo.estado != "atacar":
-            inimigo.estado = "atacar"
-            inimigo.index_frame = 0
+        if getattr(inimigo, 'explode', False):
+            if inimigo.estado != "explodir":
+                inimigo.estado = "explodir"
+                inimigo.index_frame = 0
+            ultimo_frame = len(inimigo.animacoes[inimigo.olhando_para]["explodir"]) - 1
+            if inimigo.index_frame == ultimo_frame:
+                torre.vida -= inimigo.dano_explosao
+                inimigo.vida = 0
 
-        tempo_atual = pygame.time.get_ticks()
-        if tempo_atual - inimigo.ultimo_ataque >= 1000:
-            torre.vida -= inimigo.dano
-            inimigo.ultimo_ataque = tempo_atual
+        else:
+            if inimigo.estado != "atacar":
+                inimigo.estado = "atacar"
+                inimigo.index_frame = 0
+
+            tempo_atual = pygame.time.get_ticks()
+            if tempo_atual - inimigo.ultimo_ataque >= 1000:
+                torre.vida -= inimigo.dano
+                inimigo.ultimo_ataque = tempo_atual
 
 
 def verificar_dano_mouse(pos_mouse, raio_circulo, torre, lista_inimigos):

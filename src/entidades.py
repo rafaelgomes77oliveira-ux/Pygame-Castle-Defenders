@@ -107,3 +107,29 @@ class Inimigo:
         self.y += self.dy
         self.rect.center = (int(self.x), int(self.y))
         self.atualizar_animacao()
+
+class InimigoCoxinha(Inimigo):
+    def __init__(self, x_centro, y_centro, dificuldade=1):
+        super().__init__(x_centro, y_centro, dificuldade, False)
+        self.animacoes = sprites.ANIMACOES_COXINHA
+        self.estado = "andar"
+        self.frames_atuais = self.animacoes[self.olhando_para][self.estado]
+        self.imagem = self.frames_atuais[0]
+        self.explode = True
+        self.dano_explosao = 30 + (dificuldade * 5)
+
+    def atualizar_animacao(self):
+        self.frames_atuais = self.animacoes[self.olhando_para][self.estado]
+
+        tempo_atual = pygame.time.get_ticks()
+        if tempo_atual - getattr(self, 'ultimo_update_animacao', 0) > getattr(self, 'delay_animacao', 100):
+            self.ultimo_update_animacao = tempo_atual
+            self.index_frame += 1
+
+            if self.index_frame >= len(self.frames_atuais):
+                if self.estado == "explodir":
+                    self.index_frame = len(self.frames_atuais) - 1
+                else:
+                    self.index_frame = 0
+
+            self.imagem = self.frames_atuais[self.index_frame]

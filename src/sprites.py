@@ -1,7 +1,7 @@
 import pygame
 from src import config
 
-sprite_sheet_cultista = pygame.image.load("assets/imagens/Cultista-Sheet.png").convert_alpha()
+sprite_sheet_cultista = pygame.image.load("assets/imagens/cultista-sheet.png").convert_alpha()
 TAMANHO_INIMIGO = (64, 64)
 TAMANHO_BOSS = (128, 128)
 
@@ -39,3 +39,34 @@ tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
 
 botao_play = pygame.image.load("assets/imagens/botao.png").convert_alpha()
 botao_play = pygame.transform.scale(botao_play, (100, 50))
+
+sprite_sheet_coxinha = pygame.image.load("assets/imagens/coxinha-sheet.png").convert_alpha()
+
+LARGURA_FRAME_COXINHA = 32
+ALTURA_FRAME_COXINHA = 32
+
+frames_coxinha_brutos = [sprite_sheet_coxinha.subsurface((i * LARGURA_FRAME_COXINHA, 0, LARGURA_FRAME_COXINHA, ALTURA_FRAME_COXINHA)) for i in range(8)]
+
+def criar_animacoes_coxinha(tamanho):
+    frames_direita = []
+    frames_esquerda = []
+
+    for frame in frames_coxinha_brutos:
+        frame_redimensionado = pygame.transform.scale(frame, tamanho)
+        frames_direita.append(frame_redimensionado)
+
+        frame_invertido = pygame.transform.flip(frame_redimensionado, True, False)
+        frames_esquerda.append(frame_invertido)
+
+    return {
+        "esquerda": {
+            "andar": frames_direita[0:4],
+            "explodir": frames_direita[4:8]
+        },
+        "direita": {
+            "andar": frames_esquerda[0:4],
+            "explodir": frames_esquerda[4:8]
+        }
+    }
+
+ANIMACOES_COXINHA = criar_animacoes_coxinha(TAMANHO_INIMIGO)

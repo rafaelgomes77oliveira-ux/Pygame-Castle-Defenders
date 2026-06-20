@@ -88,13 +88,8 @@ def processar_ataque(torre, acertou_inimigo, inimigo_alvo=None):
     if acertou_inimigo:
         multiplicador = 1.0 + (torre.combo_atual * torre.bonus_combo_por_acerto)
         dano_final = round(torre.dano_ataque * multiplicador)
-
-        if inimigo_alvo:
-            print(f"Acertou! Combo: {torre.combo_atual}x | Dano causado: {dano_final}")
-
         torre.combo_atual += 1
         return dano_final
     else:
         torre.combo_atual = 0
-        print("Errou! O combo foi resetado para 0.")
         return 0
