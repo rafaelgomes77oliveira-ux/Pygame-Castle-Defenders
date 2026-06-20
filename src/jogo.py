@@ -1,5 +1,8 @@
 import pygame
 import sys
+
+from pluggy import _manager
+
 from src import config
 from src.entidades import Torre
 from src.dados import carregar_moedas, salvar_moedas, carregar_nivel, salvar_nivel, salvar_upgrades
@@ -178,6 +181,10 @@ def executar_jogo():
                         intervalo_spawn_atual = funcoes.calcular_intervalo_spawn(dificuldade_atual)
                         pygame.time.set_timer(evento_spawn, intervalo_spawn_atual)
                         tempo_aviso_nivel = tempo_atual + 3000
+                        if (torre.vida + torre.vida * 0.5) > torre.vida_maxima:
+                            torre.vida = torre.vida_maxima
+                        else:
+                            torre.vida += torre.vida * 0.5
 
                     lista_inimigos.remove(inimigo)
                     continue
