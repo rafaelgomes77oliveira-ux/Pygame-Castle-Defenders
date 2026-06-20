@@ -34,6 +34,12 @@ class Torre:
                 setattr(self, atributo, valor_base + (u["incremento"] * nivel))
 
         self.vida = self.vida_maxima
+        self.atualizar_sprite()
+    def atualizar_sprite(self):
+        if self.niveis_upgrades.get("vida", 0) >= 5:
+            self.imagem = sprites.imagem_torre2
+        else:
+            self.imagem = sprites.imagem_torre
 
 
 class Inimigo:

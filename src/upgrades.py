@@ -82,6 +82,8 @@ def comprar_upgrade(torre, id_upgrade):
     if upgrade.get("curar_ao_comprar"):
         torre.vida = min(torre.vida + upgrade["incremento"], torre.vida_maxima)
 
+    torre.atualizar_sprite()
+
     return True
 
 def processar_ataque(torre, acertou_inimigo, inimigo_alvo=None):

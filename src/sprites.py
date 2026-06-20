@@ -34,6 +34,9 @@ ANIMACACOES_BOSS = criar_animacoes_cultista(TAMANHO_BOSS)
 imagem_torre = pygame.image.load("assets/imagens/tower.png").convert_alpha()
 imagem_torre = pygame.transform.scale(imagem_torre, (200, 200))
 
+imagem_torre2 = pygame.image.load("assets/imagens/tower2.png").convert_alpha()
+imagem_torre2 = pygame.transform.scale(imagem_torre2, (200, 200))
+
 tela_fundo = pygame.image.load("assets/imagens/Background-prototipo.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
 
