@@ -31,7 +31,7 @@ UPGRADES_TORRE = [
         "curar_ao_comprar": True,
     },
     {
-        "id": "multiplicador_combo",
+        "id": "Combo",
         "nome": "Combo",
         "descricao": "Aumenta o bônus de dano por acertos seguidos",
         "atributo": "bonus_combo_por_acerto",
