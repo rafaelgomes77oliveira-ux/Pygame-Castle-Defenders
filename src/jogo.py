@@ -1,8 +1,5 @@
 import pygame
 import sys
-
-from pluggy import _manager
-
 from src import config
 from src.entidades import Torre
 from src.dados import carregar_moedas, salvar_moedas, carregar_nivel, salvar_nivel, salvar_upgrades
