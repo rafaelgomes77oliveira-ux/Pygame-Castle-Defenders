@@ -211,7 +211,13 @@ def executar_jogo():
             txt_combo = fonte_pequena.render(
                 f"Combo: x{torre.combo_atual} (+{combo_bonus_pct}%)", True, (255, 220, 50)
             )
-            config.tela.blit(txt_combo, (20, 150))
+            if torre.niveis_upgrades.get("Combo", 0) > 0:
+                combo_bonus_pct = int(torre.combo_atual * torre.bonus_combo_por_acerto * 100)
+                txt_combo = fonte_pequena.render(
+                    f"Combo: x{torre.combo_atual} (+{combo_bonus_pct}%)", True, (255, 220, 50)
+                )
+
+                config.tela.blit(txt_combo, (20, 150))
 
             rect_botao_upgrades = ui.desenhar_botao_upgrades(fonte_pequena)
 
