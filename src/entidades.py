@@ -21,6 +21,9 @@ class Torre:
         self.dinheiro = 0
         self.bonus_combo_por_acerto = 0.0  
         self.combo_atual = 0
+        self.imagem_sombra = sprites.imagem_sombra_torre
+        self.rect_sombra = self.imagem_sombra.get_rect()
+        self.rect_sombra.center = self.rect.center
 
         self.niveis_upgrades = carregar_upgrades()
         for u in upgrades.UPGRADES_TORRE:

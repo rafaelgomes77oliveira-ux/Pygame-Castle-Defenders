@@ -197,6 +197,7 @@ def executar_jogo():
             pygame.draw.rect(config.tela, (40, 40, 40),  (barra_x, barra_y, torre.barra_vida_largura, 12))
             pygame.draw.rect(config.tela, (255, 0, 0),   (barra_x, barra_y, largura_atual_barra, 12))
 
+            config.tela.blit(torre.imagem_sombra, torre.rect_sombra)
             config.tela.blit(torre.imagem, torre.rect)
             pygame.draw.circle(config.tela, (255, 0, 0), posicao_mouse, torre.raio_ataque)
 
@@ -233,6 +234,7 @@ def executar_jogo():
             for inimigo in lista_inimigos:
                 config.tela.blit(inimigo.imagem, inimigo.rect)
                 ui.desenhar_barra_vida_inimigo(inimigo)
+            config.tela.blit(torre.imagem_sombra, torre.rect_sombra)
             config.tela.blit(torre.imagem, torre.rect)
             botoes_upgrades, rect_botao_voltar_upgrades = ui.desenhar_tela_upgrades(fonte_titulo, fonte_media, fonte_pequena, torre)
 
