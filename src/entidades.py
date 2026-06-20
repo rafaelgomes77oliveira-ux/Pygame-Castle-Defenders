@@ -24,6 +24,9 @@ class Torre:
         self.imagem_sombra = sprites.imagem_sombra_torre
         self.rect_sombra = self.imagem_sombra.get_rect()
         self.rect_sombra.center = self.rect.center
+        self.X_besta = sprites.X_besta
+        self.rect_X_besta = self.X_besta.get_rect()
+        self.rect_X_besta.center = self.rect.center
 
         self.niveis_upgrades = carregar_upgrades()
         for u in upgrades.UPGRADES_TORRE:
@@ -38,12 +41,12 @@ class Torre:
 
         self.vida = self.vida_maxima
         self.atualizar_sprite()
+
     def atualizar_sprite(self):
         if self.niveis_upgrades.get("vida", 0) >= 5:
             self.imagem = sprites.imagem_torre2
         else:
             self.imagem = sprites.imagem_torre
-
 
 class Inimigo:
     def __init__(self, x_centro, y_centro, dificuldade=1, eh_boss=False):

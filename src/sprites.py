@@ -37,6 +37,9 @@ imagem_torre = pygame.transform.scale(imagem_torre, (200, 200))
 imagem_torre2 = pygame.image.load("assets/imagens/tower2.png").convert_alpha()
 imagem_torre2 = pygame.transform.scale(imagem_torre2, (200, 200))
 
+X_besta = pygame.image.load("assets/imagens/x-besta.png").convert_alpha()
+X_besta = pygame.transform.scale(X_besta, (200, 200))
+
 imagem_sombra_torre = pygame.image.load("assets/imagens/sombra.png").convert_alpha()
 imagem_sombra_torre = pygame.transform.scale(imagem_sombra_torre, (200, 200))
 

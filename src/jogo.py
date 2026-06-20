@@ -199,6 +199,8 @@ def executar_jogo():
 
             config.tela.blit(torre.imagem_sombra, torre.rect_sombra)
             config.tela.blit(torre.imagem, torre.rect)
+            if torre.niveis_upgrades.get("dano", 0) == 8:
+                config.tela.blit(torre.X_besta, torre.rect_X_besta)   
             pygame.draw.circle(config.tela, (255, 0, 0), posicao_mouse, torre.raio_ataque)
 
             txt_tempo = fonte_pequena.render(f"Tempo: {funcoes.formatar_tempo(segundos_decorridos)}", True, (255, 255, 255))
@@ -233,9 +235,11 @@ def executar_jogo():
             config.tela.blit(sprites.tela_fundo, (0, 0))
             for inimigo in lista_inimigos:
                 config.tela.blit(inimigo.imagem, inimigo.rect)
-                ui.desenhar_barra_vida_inimigo(inimigo)
+                ui.desenhar_barra_vida_inimigo(inimigo)             
             config.tela.blit(torre.imagem_sombra, torre.rect_sombra)
             config.tela.blit(torre.imagem, torre.rect)
+            if torre.niveis_upgrades.get("dano", 0) == 8:
+                config.tela.blit(torre.X_besta, torre.rect_X_besta)                         
             botoes_upgrades, rect_botao_voltar_upgrades = ui.desenhar_tela_upgrades(fonte_titulo, fonte_media, fonte_pequena, torre)
 
         elif estado_jogo == "game_over":
