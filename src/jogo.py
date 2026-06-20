@@ -53,7 +53,7 @@ def executar_jogo():
 
             if estado_jogo == "menu":
                 if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
-                    rect_play = sprites.botao_play.get_rect(topleft=(config.largura // 2 - 50, config.altura // 2 - 25))
+                    rect_play = sprites.botao_play.get_rect(topleft=(config.largura // 2 - 50, config.altura // 2 - 60 ))
 
                     if rect_play.collidepoint(posicao_mouse):
                         torre = Torre(config.centro_x, config.centro_y)
@@ -149,7 +149,7 @@ def executar_jogo():
         if estado_jogo == "menu":
             config.tela.fill((0, 0, 0))
             config.tela.blit(texto_titulo, rect_titulo)
-            config.tela.blit(sprites.botao_play, (config.largura // 2 - 50, config.altura // 2 - 25))
+            config.tela.blit(sprites.botao_play, (config.largura // 2 - 50, config.altura // 2 - 60))
 
             cor_novo_jogo = (100, 100, 100) if rect_botao_novo_jogo.collidepoint(posicao_mouse) else (50, 50, 50)
             pygame.draw.rect(config.tela, cor_novo_jogo, rect_botao_novo_jogo, border_radius=8)

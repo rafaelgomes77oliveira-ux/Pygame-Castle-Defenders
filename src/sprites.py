@@ -46,8 +46,8 @@ imagem_sombra_torre = pygame.transform.scale(imagem_sombra_torre, (200, 200))
 tela_fundo = pygame.image.load("assets/imagens/Background-prototipo.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
 
-botao_play = pygame.image.load("assets/imagens/botao.png").convert_alpha()
-botao_play = pygame.transform.scale(botao_play, (100, 50))
+botao_play = pygame.image.load("assets/imagens/butaoplay.png").convert_alpha()
+botao_play = pygame.transform.scale(botao_play, (100, 100))
 
 sprite_sheet_coxinha = pygame.image.load("assets/imagens/coxinha-sheet.png").convert_alpha()
 
