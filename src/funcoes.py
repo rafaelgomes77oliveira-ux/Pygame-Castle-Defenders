@@ -26,7 +26,10 @@ def formatar_tempo(segundos_decorridos):
 
 def spawn_inimigo(lista_inimigos, dificuldade=1, boss=False):
     if boss:
-        novo_inimigo = Inimigo(config.centro_x, config.centro_y, dificuldade, True)
+        if dificuldade >= 3 and random.random() < 0.50:
+            novo_inimigo = InimigoCoxinha(config.centro_x, config.centro_y, dificuldade, True)
+        else:
+            novo_inimigo = Inimigo(config.centro_x, config.centro_y, dificuldade, True)
     elif dificuldade >= 3 and random.random() < 0.30:
         novo_inimigo = InimigoCoxinha(config.centro_x, config.centro_y, dificuldade)
     else:

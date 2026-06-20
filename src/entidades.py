@@ -109,14 +109,20 @@ class Inimigo:
         self.atualizar_animacao()
 
 class InimigoCoxinha(Inimigo):
-    def __init__(self, x_centro, y_centro, dificuldade=1):
-        super().__init__(x_centro, y_centro, dificuldade, False)
-        self.animacoes = sprites.ANIMACOES_COXINHA
+    def __init__(self, x_centro, y_centro, dificuldade=1, eh_boss=False):
+        super().__init__(x_centro, y_centro, dificuldade, eh_boss)
+
+        if self.eh_boss:
+            self.animacoes = sprites.ANIMACOES_COXINHA_BOSS
+            self.dano_explosao = 80 + (dificuldade * 15)
+        else:
+            self.animacoes = sprites.ANIMACOES_COXINHA
+            self.dano_explosao = 30 + (dificuldade * 5)
+
         self.estado = "andar"
         self.frames_atuais = self.animacoes[self.olhando_para][self.estado]
         self.imagem = self.frames_atuais[0]
         self.explode = True
-        self.dano_explosao = 30 + (dificuldade * 5)
 
     def atualizar_animacao(self):
         self.frames_atuais = self.animacoes[self.olhando_para][self.estado]

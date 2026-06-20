@@ -70,3 +70,4 @@ def criar_animacoes_coxinha(tamanho):
     }
 
 ANIMACOES_COXINHA = criar_animacoes_coxinha(TAMANHO_INIMIGO)
+ANIMACOES_COXINHA_BOSS = criar_animacoes_coxinha(TAMANHO_BOSS)
