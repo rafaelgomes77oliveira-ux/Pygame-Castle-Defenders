@@ -151,3 +151,36 @@ class InimigoCoxinha(Inimigo):
                     self.index_frame = 0
 
             self.imagem = self.frames_atuais[self.index_frame]
+
+class AnimacaoAtaque:
+    def __init__(self, x, y, raio):
+        self.frames = []
+
+        multiplicador_visual = 3.5
+
+        largura_visual = int(raio * multiplicador_visual)
+        altura_visual = int(raio * multiplicador_visual)
+        tamanho_de_ataque = (largura_visual, altura_visual)
+
+        for frame in sprites.frames_cursor_brutos:
+            frame_redimensionado = pygame.transform.scale(frame, tamanho_de_ataque)
+            self.frames.append(frame_redimensionado)
+
+        self.index_frame = 0
+        self.ultima_atualizacao = pygame.time.get_ticks()
+        self.velocidade_animacao = 40
+
+        self.imagem = self.frames[self.index_frame]
+        self.rect = self.imagem.get_rect(center=(x, y))
+        self.concluida = False
+
+    def update(self):
+        tempo_atual = pygame.time.get_ticks()
+        if tempo_atual - self.ultima_atualizacao > self.velocidade_animacao:
+            self.ultima_atualizacao = tempo_atual
+            self.index_frame += 1
+
+            if self.index_frame >= len(self.frames):
+                self.concluida = True
+            else:
+                self.imagem = self.frames[self.index_frame]

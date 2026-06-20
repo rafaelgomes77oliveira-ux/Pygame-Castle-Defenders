@@ -80,3 +80,12 @@ def criar_animacoes_coxinha(tamanho):
 
 ANIMACOES_COXINHA = criar_animacoes_coxinha(TAMANHO_INIMIGO)
 ANIMACOES_COXINHA_BOSS = criar_animacoes_coxinha(TAMANHO_BOSS)
+
+sprite_sheet_cursor = pygame.image.load("assets/imagens/cursor-sheet.png").convert_alpha()
+largura_cursor = sprite_sheet_cursor.get_width() // 4
+altura_cursor = sprite_sheet_cursor.get_height()
+
+frames_cursor_brutos = [
+    sprite_sheet_cursor.subsurface((i * largura_cursor, 0, largura_cursor, altura_cursor))
+    for i in range(4)
+]

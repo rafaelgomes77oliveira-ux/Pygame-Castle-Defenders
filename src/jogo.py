@@ -1,7 +1,7 @@
 import pygame
 import sys
 from src import config
-from src.entidades import Torre
+from src.entidades import Torre, AnimacaoAtaque
 from src.dados import carregar_moedas, salvar_moedas, carregar_nivel, salvar_nivel, salvar_upgrades
 from src import funcoes
 from src import upgrades
@@ -19,6 +19,7 @@ def executar_jogo():
     rect_titulo  = texto_titulo.get_rect(center=(config.centro_x, config.centro_y - 120))
 
     lista_inimigos = []
+    animacoes_ataque = []
     torre = Torre(config.centro_x, config.centro_y)
     torre.dinheiro = carregar_moedas()
 
@@ -98,13 +99,10 @@ def executar_jogo():
                 if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
                     if rect_botao_upgrades.collidepoint(posicao_mouse):
                         tempo_inicio_pausa = pygame.time.get_ticks()
-                        pygame.event.clear(evento_spawn)
-                        pygame.time.set_timer(evento_spawn, 0)
                         estado_jogo = "upgrades"
                     else:
-                        funcoes.verificar_dano_mouse(
-                            posicao_mouse, torre.raio_ataque, torre, lista_inimigos
-                        )
+                        funcoes.verificar_dano_mouse(posicao_mouse, torre.raio_ataque, torre, lista_inimigos)
+                        animacoes_ataque.append(AnimacaoAtaque(posicao_mouse[0], posicao_mouse[1], torre.raio_ataque))
 
             elif estado_jogo == "upgrades":
                 if evento.type == pygame.KEYDOWN and evento.key in (pygame.K_ESCAPE, pygame.K_u):
@@ -200,8 +198,14 @@ def executar_jogo():
             config.tela.blit(torre.imagem_sombra, torre.rect_sombra)
             config.tela.blit(torre.imagem, torre.rect)
             if torre.niveis_upgrades.get("dano", 0) == 8:
-                config.tela.blit(torre.X_besta, torre.rect_X_besta)   
-            pygame.draw.circle(config.tela, (255, 0, 0), posicao_mouse, torre.raio_ataque)
+                config.tela.blit(torre.X_besta, torre.rect_X_besta)
+
+            for anim in animacoes_ataque[:]:
+                anim.update()
+                if anim.concluida:
+                    animacoes_ataque.remove(anim)
+                else:
+                    config.tela.blit(anim.imagem, anim.rect)
 
             txt_tempo = fonte_pequena.render(f"Tempo: {funcoes.formatar_tempo(segundos_decorridos)}", True, (255, 255, 255))
             config.tela.blit(txt_tempo, (20, 60))
