@@ -1,4 +1,4 @@
-# Catle Defenders
+# Castle Defenders
 
 ## Integrantes do grupo
 
@@ -18,51 +18,38 @@
 
 ## Descrição do jogo
 
-Descreva brevemente a ideia principal do jogo.
-
-Exemplo:
-
-> O jogo consiste em controlar um personagem que deve coletar moedas e evitar obstáculos. O jogador ganha pontos ao coletar itens e perde vidas ao colidir com obstáculos. A partida termina quando o tempo acaba ou quando o jogador perde todas as vidas.
+> O jogo consiste em defender uma torre de inimigos, juntar moedas ao derrotá-los e gastá-las em melhorias. A partida termina quando a vida da torre chega em 0.
 
 ## Objetivo do jogador
 
-Explique o que o jogador precisa fazer para vencer ou avançar no jogo.
 
-Exemplo:
-
-> O objetivo é coletar a maior quantidade possível de itens antes que o tempo acabe, evitando colisões com os obstáculos.
+> Para avançar no jogo o jogador deve derrotar os chefões que aparecem periodicamente, o que aumenta o nível de dificuldade. O objetivo é chegar na maior dificuldade possível.
 
 ## Regras do jogo
 
-Liste as principais regras do jogo.
-
-Exemplo:
-
-- O jogador se movimenta usando as setas do teclado.
-- Cada item coletado aumenta a pontuação.
-- Colidir com um obstáculo reduz a quantidade de vidas.
-- A partida termina quando o jogador perde todas as vidas ou quando o tempo acaba.
+- O jogador ataca no local onde clica com o mouse.
+- Cada inimigo aumenta a quantidade de moedas ao derrotado.
+- Inimigos atacam a torre e tiram sua vida ao entrar em contato com ela.
+- O inimigo "Cultista" ataca a torre periodicamente e não para até ser derrotado.
+- O inimigo "Coxinha" começa a surgir a partir do nível 3 e explode ao chegar na torre, causando alto dano e se auto-derrotando.
+- Os bosses são versões dos inimigos maiores e mais fortes que aparecem a cada 30 segundos. Ao derrotar um boss, a vida da torre se cura um pouco, o jogador recebe moedas a mais o nível de dificuldade aumenta.
+- A cada aumento no nível de dificuldade os inimigos ficam mais rápidos, causam mais dano e tem mais vida.
+- Com as moedas acumuladas ao derrotar inimigos e bosses, podem ser feitas melhorias de: dano do ataque, raio do ataque, vida da torre e o desbloqueio de uma habilidade de fazer "combos" (cada clique que acerta um inimigo acumula combo e aumenta o dano, errar um clique reseta o combo para 0).
+- Quando a vida da torre chega a 0, o jogador deve recomeçar do início do nível em que estava ou pode escolher começar um novo jogo.
 
 ## Controles
 
-Informe as teclas ou comandos utilizados no jogo.
-
-Exemplo:
-
-- Seta para cima: mover para cima
-- Seta para baixo: mover para baixo
-- Seta para esquerda: mover para esquerda
-- Seta para direita: mover para direita
-- Espaço: realizar ação
-- ESC: sair do jogo
+- Posição do cursor para determinar o local de ataque.
+- Botão esquerdo do mouse para atacar.
+- Tecla U para abrir o menu de melhorias.
 
 ## Como executar o projeto
 
 ### 1. Clonar o repositório
 
 ```bash
-git clone LINK_DO_REPOSITORIO
-cd NOME_DA_PASTA
+git clone https://github.com/rafaelgomes77oliveira-ux/Pygame-Castle-Defenders
+cd Pygame-Castle-Defenders
 pip install -r requirements.txt
 python main.py
 ```

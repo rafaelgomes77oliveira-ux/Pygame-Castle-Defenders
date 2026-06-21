@@ -35,7 +35,7 @@ UPGRADES_TORRE = [
         "nome": "Combo",
         "descricao": "Aumenta o bônus de dano por acertos seguidos",
         "atributo": "bonus_combo_por_acerto",
-        "incremento": 0.05, 
+        "incremento": 0.025,
         "custo_base": 2000,
         "custo_por_nivel": 0,
         "nivel_maximo": 1,
@@ -88,10 +88,12 @@ def comprar_upgrade(torre, id_upgrade):
 
 def processar_ataque(torre, acertou_inimigo, inimigo_alvo=None):
     if acertou_inimigo:
+        # REGRA: Multiplicador base (1.0) + bônus acumulado pelos acertos consecutivos
         multiplicador = 1.0 + (torre.combo_atual * torre.bonus_combo_por_acerto)
         dano_final = round(torre.dano_ataque * multiplicador)
         torre.combo_atual += 1
         return dano_final
     else:
+        # REGRA: O jogador clicou fora de qualquer inimigo, punição: zera o combo.
         torre.combo_atual = 0
         return 0

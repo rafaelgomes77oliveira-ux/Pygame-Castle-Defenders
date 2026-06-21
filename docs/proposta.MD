@@ -8,7 +8,7 @@ Castle Defenders
 
 - Álvaro Barbosa Ferreira Silva
 - Enzo Gentil Xavier Barroso
-- Rafael GOmes antunes De Oliveira
+- Rafael Gomes antunes De Oliveira
 - João Mario Paes de Abreu
 
 ## 3. Tipo de jogo
@@ -235,7 +235,7 @@ Exemplo:
 
 Escopo mínimo:
 
-> A versão minima do jogo deve ter uma fase em que vc vence se sobreviver até o final, deve ter uma pequena variedade de inimigos e melhorias.
+> A versão minima do jogo deve ter uma fase em que você vence se sobreviver até o final, deve ter uma pequena variedade de inimigos e melhorias.
 
 ## 15. Possíveis melhorias, caso haja tempo
 

@@ -35,6 +35,7 @@ def executar_jogo():
     tempo_aviso_nivel = 0
 
     rect_botao_replay = pygame.Rect(0, 0, 0, 0)
+    rect_botao_novo_jogo_go = pygame.Rect(0, 0, 0, 0)
     rect_botao_upgrades = pygame.Rect(0, 0, 0, 0)
     rect_botao_voltar_upgrades = pygame.Rect(0, 0, 0, 0)
     rect_botao_novo_jogo = pygame.Rect(config.centro_x - 150, config.altura // 2 + 60, 300, 50)
@@ -143,6 +144,22 @@ def executar_jogo():
                         pygame.event.clear(evento_spawn)
                         pygame.time.set_timer(evento_spawn, intervalo_spawn_atual)
                         estado_jogo = "jogando"
+                    elif rect_botao_novo_jogo_go.collidepoint(posicao_mouse):
+                        salvar_moedas(0)
+                        salvar_nivel(1)
+                        salvar_upgrades({})
+
+                        torre = Torre(config.centro_x, config.centro_y)
+                        torre.dinheiro = 0
+                        lista_inimigos.clear()
+                        tempo_inicio_partida = pygame.time.get_ticks()
+                        dificuldade_atual = 1
+                        intervalo_spawn_atual = funcoes.calcular_intervalo_spawn(dificuldade_atual)
+                        proximo_boss_ms = tempo_inicio_partida + funcoes.INTERVALO_BOSS_MS
+                        tempo_aviso_nivel = 0
+                        pygame.event.clear(evento_spawn)
+                        pygame.time.set_timer(evento_spawn, intervalo_spawn_atual)
+                        estado_jogo = "jogando"
 
         if estado_jogo == "menu":
             config.tela.fill((0, 0, 0))
@@ -170,16 +187,19 @@ def executar_jogo():
                     torre.dinheiro += inimigo.dinheiro
                     salvar_moedas(torre.dinheiro)
 
+                    # REGRA: Quando um Boss é derrotado
                     if inimigo.eh_boss:
                         dificuldade_atual += 1
                         salvar_nivel(dificuldade_atual)
+                        # Acelera o spawn dos inimigos comuns para a nova dificuldade
                         intervalo_spawn_atual = funcoes.calcular_intervalo_spawn(dificuldade_atual)
                         pygame.time.set_timer(evento_spawn, intervalo_spawn_atual)
                         tempo_aviso_nivel = tempo_atual + 3000
-                        if (torre.vida + torre.vida * 0.5) > torre.vida_maxima:
+                        # Cura a torre em 40% da vida máxima
+                        if (torre.vida + torre.vida_maxima * 0.4) > torre.vida_maxima:
                             torre.vida = torre.vida_maxima
                         else:
-                            torre.vida += torre.vida * 0.5
+                            torre.vida += torre.vida_maxima * 0.4
 
                     lista_inimigos.remove(inimigo)
                     continue
@@ -251,7 +271,7 @@ def executar_jogo():
             for inimigo in lista_inimigos:
                 config.tela.blit(inimigo.imagem, inimigo.rect)
             config.tela.blit(torre.imagem, torre.rect)
-            rect_botao_replay = ui.desenhar_tela_game_over(fonte_titulo, fonte_media, fonte_pequena, torre.dinheiro)
+            rect_botao_replay, rect_botao_novo_jogo_go = ui.desenhar_tela_game_over(fonte_titulo, fonte_media, fonte_pequena, torre.dinheiro)
 
         pygame.display.flip()
         relogio.tick(60)

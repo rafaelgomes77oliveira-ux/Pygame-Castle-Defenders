@@ -31,10 +31,10 @@ def criar_animacoes_cultista(tamanho):
 ANIMACACOES_INIMIGO = criar_animacoes_cultista(TAMANHO_INIMIGO)
 ANIMACACOES_BOSS = criar_animacoes_cultista(TAMANHO_BOSS)
 
-imagem_torre = pygame.image.load("assets/imagens/tower.png").convert_alpha()
+imagem_torre = pygame.image.load("assets/imagens/torre.png").convert_alpha()
 imagem_torre = pygame.transform.scale(imagem_torre, (200, 200))
 
-imagem_torre2 = pygame.image.load("assets/imagens/tower2.png").convert_alpha()
+imagem_torre2 = pygame.image.load("assets/imagens/torre2.png").convert_alpha()
 imagem_torre2 = pygame.transform.scale(imagem_torre2, (200, 200))
 
 X_besta = pygame.image.load("assets/imagens/x-besta.png").convert_alpha()
@@ -43,10 +43,10 @@ X_besta = pygame.transform.scale(X_besta, (200, 200))
 imagem_sombra_torre = pygame.image.load("assets/imagens/sombra.png").convert_alpha()
 imagem_sombra_torre = pygame.transform.scale(imagem_sombra_torre, (200, 200))
 
-tela_fundo = pygame.image.load("assets/imagens/Background-prototipo.png").convert()
+tela_fundo = pygame.image.load("assets/imagens/background.png").convert()
 tela_fundo = pygame.transform.scale(tela_fundo, (config.largura, config.altura))
 
-botao_play = pygame.image.load("assets/imagens/butaoplay.png").convert_alpha()
+botao_play = pygame.image.load("assets/imagens/botao.png").convert_alpha()
 botao_play = pygame.transform.scale(botao_play, (100, 100))
 
 sprite_sheet_coxinha = pygame.image.load("assets/imagens/coxinha-sheet.png").convert_alpha()

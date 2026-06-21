@@ -120,4 +120,13 @@ def desenhar_tela_game_over(fonte_titulo, fonte_media, fonte_pequena, moedas_ret
 
     txt_rep = fonte_pequena.render("Jogar De Novo", True, (255, 255, 255))
     config.tela.blit(txt_rep, txt_rep.get_rect(center=rect_replay.center))
-    return rect_replay
+    rect_novo_jogo_go = pygame.Rect(0, 0, 280, 52)
+    rect_novo_jogo_go.center = (config.centro_x, config.centro_y + 130)
+    cor_botao_nj = (100, 100, 100) if rect_novo_jogo_go.collidepoint(mouse) else (50, 50, 50)
+    pygame.draw.rect(config.tela, cor_botao_nj, rect_novo_jogo_go, border_radius=8)
+    pygame.draw.rect(config.tela, (255, 255, 255), rect_novo_jogo_go, 2, border_radius=8)
+
+    txt_nj = fonte_pequena.render("Novo Jogo", True, (255, 255, 255))
+    config.tela.blit(txt_nj, txt_nj.get_rect(center=rect_novo_jogo_go.center))
+
+    return rect_replay, rect_novo_jogo_go

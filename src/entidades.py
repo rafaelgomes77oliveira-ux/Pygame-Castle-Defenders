@@ -12,8 +12,8 @@ class Torre:
         self.imagem = sprites.imagem_torre
         self.rect = self.imagem.get_rect()
         self.rect.center = (x_centro, y_centro)
-        self.vida = 100
-        self.vida_maxima = 100
+        self.vida = 200
+        self.vida_maxima = 200
         self.barra_vida_largura = 100
         self.ratio_vida = self.barra_vida_largura / self.vida_maxima
         self.dano_ataque = 10

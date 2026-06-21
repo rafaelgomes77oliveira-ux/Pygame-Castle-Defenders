@@ -7,7 +7,7 @@ from src import upgrades
 
 RAIO_CONTATO_TORRE = 90
 SEGUNDOS_POR_NIVEL = 20
-INTERVALO_BOSS_MS = 45000
+INTERVALO_BOSS_MS = 30000
 SPAWN_INICIAL_MS = 800
 SPAWN_MINIMO_MS = 300
 REDUCAO_SPAWN_POR_NIVEL_MS = 70
@@ -43,26 +43,29 @@ def verificar_colisao_inimigo(inimigo, torre):
         inimigo.rect.centerx - torre.rect.centerx,
         inimigo.rect.centery - torre.rect.centery
     )
-
+    # REGRA: Se o inimigo encostar na torre (entrar no raio de contato)
     if distancia <= RAIO_CONTATO_TORRE:
-        inimigo.dx = 0
+        inimigo.dx = 0 # Inimigo para de andar
         inimigo.dy = 0
-
+        # REGRA: Inimigo "Coxinha"
         if getattr(inimigo, 'explode', False):
             if inimigo.estado != "explodir":
                 inimigo.estado = "explodir"
                 inimigo.index_frame = 0
             ultimo_frame = len(inimigo.animacoes[inimigo.olhando_para]["explodir"]) - 1
+            # A torre só recebe o dano quando a animação de explosão termina
             if inimigo.index_frame == ultimo_frame:
                 torre.vida -= inimigo.dano_explosao
-                inimigo.vida = 0
+                inimigo.vida = 0 # Inimigo morre ao explodir
 
+        # REGRA: Inimigo "Cultista"
         else:
             if inimigo.estado != "atacar":
                 inimigo.estado = "atacar"
                 inimigo.index_frame = 0
 
             tempo_atual = pygame.time.get_ticks()
+            # Causa dano contínuo à torre a cada 1 segundo enquanto estiver vivo
             if tempo_atual - inimigo.ultimo_ataque >= 1000:
                 torre.vida -= inimigo.dano
                 inimigo.ultimo_ataque = tempo_atual

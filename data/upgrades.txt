@@ -1,4 +1,0 @@
-dano=8
-raio=6
-vida=5
-multiplicador_combo=1
