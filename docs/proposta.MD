@@ -24,7 +24,7 @@ Castle Defenders
 
 Descrição:
 
-> defenda a torre da orda de inimigos, o jogador controla a economia e as defesas para sobreviver até o fim da fase.
+> defenda a torre da orda de inimigos, o jogador controle a economia e as defesas para sobreviver até o fim da fase.
 
 ## 5. Objetivo do jogador
 
@@ -42,7 +42,7 @@ Exemplos:
 
 Objetivo:
 
-> Defender a torre até o final
+> Defender a torre até o final, alcançar o maior nivel possível
 
 ## 6. Regras principais
 
@@ -58,9 +58,9 @@ Exemplo:
 
 Regras do grupo:
 
-- Regra 1: Derrotar os inimigos
-- Regra 2: Defender a torre
-- Regra 3: Você passa de fase ao derrotar o boss
+> Regra 1: Derrotar os inimigos
+> Regra 2: Defender a torre
+> Regra 3: Você passa de nível ao derrotar o boss
 
 ## 7. Condição de vitória
 
@@ -106,7 +106,7 @@ Exemplo:
 
 Descrição:
 
-> A torre que deve ser defendida
+> A torre que deve ser defendida das hordas de inimigos
 
 ## Obstáculos, inimigos ou desafios
 
@@ -126,7 +126,7 @@ Exemplo:
 
 Descrição:
 
-> menu de melhorias da torre
+> torre ataca com o cursor, inimigos dropam quando moedas quando morrem, use as no menu de melhorias da torre para upgrades
 
 ## Pontuação, vidas, tempo ou progresso
 
@@ -136,7 +136,7 @@ Exemplo:
 
 Descrição:
 
-> A Torre tem uma barra de vida, derrotar inimigos da moedas, as ordas de inimigos ficam mais dificies com o passar do tempo, o jogo acaba se a torre for destruida
+> A Torre tem uma barra de vida, derrotar inimigos da moedas, as ordas de inimigos ficam mais dificies com o passar do tempo, o jogo acaba se a torre for destruida, alcance o maior nível possível
 
 ## 10. Controles previstos
 
@@ -153,7 +153,7 @@ Exemplo:
 
 Controles do grupo:
 
-- botão direito do mouse - Pode ser usado para interagir com o menu e melhorias
+- botão esquerdo do mouse - Pode ser usado para interagir com o menu e melhorias e para atacar os inimigos
 
 ## 11. Organização inicial do código
 
@@ -169,14 +169,17 @@ Exemplo:
 
 Organização planejada:
 
-> 
 - `main.py`: inicia o jogo;
 - `src/jogo.py`: contém o loop principal;
 - `/assets` : Guarda os assets que serão utilizados
 - `src/funcoes.py`: contém funções auxiliares;
 - `src/dados.py`: contém funções de leitura e escrita de arquivos.
-
-
+- `src/entidades.py`: contem as classes da torre e inimigos
+- `src/upgrades.py`: contem as funções para upgrades
+- `src/dados.py`: salva dados atravez dos txt
+- `src/config.py`: config basica da tela
+- `src/ui.py`: contem o modo que os inimigos se comportam
+- `src/sprites.py`: contem os sprites e animações
 
 ## 12. Recursos externos previstos
 
@@ -191,7 +194,6 @@ Exemplo:
 
 Recursos previstos:
 
-> 
 - imagens obtidas de banco gratuito;
 - sons gratuitos;
 - tutorial usado apenas como referência;
@@ -201,6 +203,7 @@ Recursos previstos:
 
 Caso não pretenda utilizar recursos externos, escreva:
 
+> não utilizamos nenhum recurso externo, todos os sprites foram feitos a mão
 
 ## 13. Principais dificuldades esperadas
 
